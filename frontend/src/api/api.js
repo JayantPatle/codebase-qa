@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://your-render-app-name.onrender.com/api",
+  baseURL: "https://codebase-qa-ozcn.onrender.com/api",
 });
 
 // Interceptor to remove Content-Type for FormData (allows browser to set correct boundary)
