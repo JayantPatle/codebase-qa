@@ -11,9 +11,30 @@ const errorHandler = require("./utils/errorHandler");
 
 const app = express();
 
-// Configure CORS
+// Configure CORS. Allow configuring allowed origins via FRONTEND_ORIGIN env var
+// e.g. FRONTEND_ORIGIN="https://your-frontend.netlify.app,https://app.vercel.app"
+// Defaults include local dev ports and the Netlify frontend URL so CORS works
+// if `FRONTEND_ORIGIN` isn't set in production envs.
+const defaultOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://codebaseqa.netlify.app"
+];
+const allowedOrigins = process.env.FRONTEND_ORIGIN
+  ? process.env.FRONTEND_ORIGIN.split(',').map(s => s.trim()).filter(Boolean)
+  : defaultOrigins;
+
+console.log('CORS allowed origins:', allowedOrigins);
+
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174"],
+  origin: function(origin, callback) {
+    // Allow non-browser tools (curl, server-side) which send no origin
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes('*') || allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    return callback(new Error('CORS policy: origin not allowed'));
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"]
