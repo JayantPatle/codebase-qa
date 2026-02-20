@@ -18,7 +18,7 @@ const app = express();
 const defaultOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
-  "https://codebaseqa.netlify.app"
+  "https://codebase-qa-czxa-m7jw7b4da-jayant-patles-projects.vercel.app"
 ];
 const allowedOrigins = process.env.FRONTEND_ORIGIN
   ? process.env.FRONTEND_ORIGIN.split(',').map(s => s.trim()).filter(Boolean)
