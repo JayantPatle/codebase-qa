@@ -7,8 +7,10 @@
       "config": { "distDir": "dist" }
     }
   ],
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://codebase-qa-ozcn.onrender.com/api/:path*" }
+  ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "https://codebase-qa-ozcn.onrender.com/api/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
