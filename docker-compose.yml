@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: codebase-qa-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-changeme}
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - codebase-qa-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile/Dockerfile
+    container_name: codebase-qa-backend
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      MONGO_URI: ${MONGO_URI:-mongodb://root:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/codebaseqa?authSource=admin}
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend/uploads:/app/uploads
+    networks:
+      - codebase-qa-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: codebase-qa-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - codebase-qa-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  codebase-qa-network:
+    driver: bridge

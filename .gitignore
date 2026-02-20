@@ -1,0 +1,95 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+.pnpm-debug.log
+
+# Environment variables (never commit!)
+.env
+.env.local
+.env.*.local
+
+# Service envs and credentials
+/backend/.env
+/frontend/.env
+backend/sa-key.json
+**/sa-key.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Database
+.mongo/
+*.db
+*.sqlite
+
+# Uploads
+uploads/
+repos/
+
+# Secrets and keys
+.env.*
+*.env
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+*.pfx
+credentials.json
+google-credentials.json
+service-account*.json
+sa-key.json
+.ssh/
+
+# Cloud / infra
+.terraform/
+.terraform.tfstate*
+terraform.tfvars
+*.tfvars
+.vagrant/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Caches
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Misc
+.history/
+.serverless/
+coverage/
+
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Docker
+.docker-cache/
+
+# Testing
+coverage/
+.nyc_output/
+*.test.js
