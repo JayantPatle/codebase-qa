@@ -13,7 +13,7 @@ const app = express();
 
 app.use(cors({
   origin: "https://codebase-qa-frontend.vercel.app",        // Automatically allow request origin
-  credentials: true
+  credentials: false,                                      // No cookies or credentials needed
 }));
 
 // Body parsers
