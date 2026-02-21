@@ -12,7 +12,7 @@ const errorHandler = require("./utils/errorHandler");
 const app = express();
 
 app.use(cors({
-  origin: true,        // Automatically allow request origin
+  origin: "https://codebase-qa-frontend.vercel.app",        // Automatically allow request origin
   credentials: true
 }));
 
