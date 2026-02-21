@@ -13,10 +13,8 @@ const app = express();
 
 // Configure CORS
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174"],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"]
+  origin: "https://codebase-qa-frontend.vercel.app",        // Automatically allow request origin
+  credentials: false,                                      // No cookies or credentials needed
 }));
 
 
