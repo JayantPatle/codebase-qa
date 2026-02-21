@@ -11,14 +11,6 @@ const errorHandler = require("./utils/errorHandler");
 
 const app = express();
 
-/**
- * ✅ SIMPLE & STABLE CORS CONFIG
- * Works with:
- * - Vercel
- * - Netlify
- * - Localhost
- * - Postman
- */
 app.use(cors({
   origin: true,        // Automatically allow request origin
   credentials: true
