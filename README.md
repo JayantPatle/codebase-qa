@@ -54,24 +54,3 @@ Quick start (development)
    - npm run dev (default Vite port)
 
 3. Upload a ZIP in the frontend, then ask questions for the repo created.
-
-Docker (one-command)
-
-```powershell
-docker-compose up --build -d
-```
-
-API highlights
-- `POST /api/upload` — upload ZIP (multipart/form-data)
-- `POST /api/ask` — ask question (JSON: { repoName, question })
-- `GET /api/ask/history/:repoName` — last 10 Q&As for a repo
-- `GET /api/status` — backend/db/llm health
-
-Notes
-- Do not commit real API keys. Use `.env.example` as reference.
-- The retrieval is heuristic-based; consider adding embeddings for better relevance on large repos.
-
-Contact / Maintainer
-- See ABOUTME.md
-
-License: MIT
